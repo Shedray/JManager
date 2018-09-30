@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FXML.iml" filepath="$PROJECT_DIR$/FXML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JManager.iml" filepath="$PROJECT_DIR$/JManager.iml" />
     </modules>
   </component>
 </project>
