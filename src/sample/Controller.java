@@ -24,7 +24,7 @@ public class Controller {
         JDBC Test=new JDBC();
 
         Test.JDBC_Connect(DB_URL,USER,PASS);
-        List<Map> maps = Test.JDBC_Search();
+        List<Person> maps ="";
         Display jj = new Display();
         String a[]={"ID","Name","PersonID","GroupID"};
         jj.TableView(Info,a,maps);
