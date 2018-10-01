@@ -1,9 +1,11 @@
 <c3p0-config>	
 	<!-- 该项目只使用默认配置的连接池 -->
   <default-config>
-	   	<!--  默认的参数 -->
+
+      <!-- 8.0以上的mysql数据库需要这样填写否则链接不上数据库，非高版本的添加Url即可-->
 	  <property name="jdbcUrl">jdbc:mysql://localhost:3306/ctl?useSSL=false&amp;serverTimezone=Hongkong&amp;characterEncoding=utf-8&amp;autoReconnect=true</property>
-	  <property name="user">root</property>
+
+      <property name="user">root</property>
 	  <property name="password">123456</property>
 	  <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
 	  <property name="initialPoolSize">10</property>
