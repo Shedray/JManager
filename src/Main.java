@@ -1,48 +1,23 @@
 
-import dao.PersonDao;
-import pojo.Person;
 
-import java.util.List;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
-    //static String table="tb_user";
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("UIStatic/Main.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();
+    }
 
-    public static void main(String[] args) throws Exception {
-        PersonDao personDao = new PersonDao();
 
-       /*Person person = new Person();
-        person.setAssets("1");
-        person.setBirthday("s");
-        int i = personDao.insertUser(person);*/
-        /*List<Person> list = personDao.findPersonByTJ(person);
-        for (Person person1 : list) {
-            System.out.println(person1);
-        }*/
-
-        List<Person> person = personDao.findPerson();
-        for (Person person1 : person) {
-            System.out.println(person1);
-        }
-    /*person.setAssets("1");
-        person.setBirthday("s");
-        person.setEnjoythepolicy("33");
-        person.setGroup("s");
-        person.setGroupid("ss");
-        person.setHomegroup("ss");
-        person.setIsitpermanent("s");
-        person.setNation("s");
-        person.setNumberofplanted("ss");
-        person.setPartytime("sss");
-        person.setPolitical("sss");
-        person.setResume("sss");
-        person.setSexy("s");
-        person.setSocialrelations("ss");
-        person.setTypesofpoorhouseholds("sss");
-        person.setWorks("ss");
-        person.setAddress("石家庄");*/
-      /* person.setPersonid("130133199704281211");
-        int i = personDao.insertUser(person);
-        System.out.println(i);*/
+    public static void main(String[] args) {
+        launch(args);
     }
 }
