@@ -25,7 +25,7 @@ public class PersonDao {
      * @throws SQLException
      */
     public Person findPersonByPersonName(String personName) throws SQLException {
-        String sql = "select * from " + table + " where Name=?";
+        String sql = "select * from " + table + " where Name= ?";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
         return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{personName});
     }
