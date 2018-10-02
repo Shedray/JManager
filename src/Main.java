@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("./UIStatic/Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/Main.fxml"));
         primaryStage.setTitle("JManager");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
