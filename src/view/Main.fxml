@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -18,7 +19,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <top>
 
-    <MenuBar BorderPane.alignment="CENTER">
+          <MenuBar prefWidth="600.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text=" 打开 ">
             <items>
@@ -40,7 +41,7 @@
       </MenuBar>
    </top>
    <left>
-      <AnchorPane prefHeight="375.0" prefWidth="215.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="264.0" prefWidth="215.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="SearchText" layoutX="12.0" layoutY="41.0" prefHeight="23.0" prefWidth="133.0" />
             <Button layoutX="161.0" layoutY="41.0" mnemonicParsing="false" onAction="#SearchByName" text="搜索" />
@@ -49,9 +50,9 @@
       </AnchorPane>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="236.0" prefWidth="385.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="Info" prefHeight="246.0" prefWidth="385.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="Info" prefHeight="287.0" prefWidth="385.0" BorderPane.alignment="CENTER">
               <columns>
                   <TableColumn minWidth="30.0" prefWidth="30.0" text="ID" />
                   <TableColumn minWidth="50.0" prefWidth="50.0" text="名字" />
@@ -63,10 +64,18 @@
       </BorderPane>
    </center>
    <bottom>
-      <AnchorPane prefHeight="93.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="106.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="478.0" layoutY="30.0" mnemonicParsing="false" onAction="#DisplayAllPeople" prefHeight="33.0" prefWidth="87.0" text="显示全部" />
-         </children>
+            <Button layoutX="465.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#DisplayAllPeople" prefHeight="45.0" prefWidth="84.0" text="显示全部" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="51.0">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
+            <Button layoutX="357.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NewPeople" prefHeight="45.0" prefWidth="84.0" text="新增村民" AnchorPane.rightAnchor="159.0">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+      </children>
       </AnchorPane>
    </bottom>
 </BorderPane>

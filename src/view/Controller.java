@@ -2,7 +2,6 @@ package view;
 import ViewUtil.Tableview;
 import dao.PersonDao;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableListValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -94,5 +93,8 @@ public class Controller implements Initializable {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML public void NewPeople(ActionEvent event){
+        
     }
 }
