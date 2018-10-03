@@ -51,11 +51,7 @@ public class Controller implements Initializable {
                             i++;
                             System.out.println("i="+i);
                             try{
-                                Stage show =new Stage();
-                                Parent newwin = FXMLLoader.load(getClass().getResource("Info.fxml"));
-                                show.setTitle("JManager");
-                                show.setScene(new Scene(newwin, 302, 172));
-                                show.show();
+
                             }catch (Exception e){
                                 System.out.println(e);
                             }
@@ -69,6 +65,17 @@ public class Controller implements Initializable {
                 "id", "Name"));
         Tooltip a = new Tooltip("选择查询方式");
         SearchChoi.setTooltip(a);
+    }
+    @FXML public void SetPass(ActionEvent event){
+        try {
+            Stage show = new Stage();
+            Parent newwin = FXMLLoader.load(getClass().getResource("Info.fxml"));
+            show.setTitle("设置权限密码");
+            show.setScene(new Scene(newwin, 294, 183));
+            show.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     @FXML public void initialize(URL url, ResourceBundle rb) {
         TableViewInit();
@@ -95,6 +102,18 @@ public class Controller implements Initializable {
         }
     }
     @FXML public void NewPeople(ActionEvent event){
-        
+        try{
+            Stage show = new Stage();
+            Parent newwin = FXMLLoader.load(getClass().getResource("new.fxml"));
+            show.setTitle("新增村民数据");
+            show.setScene(new Scene(newwin, 600, 600));
+            show.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @FXML public void exit(ActionEvent event){
+        Stage now =(Stage) Info.getScene().getWindow();
+        now.close();
     }
 }

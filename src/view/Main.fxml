@@ -24,12 +24,12 @@
           <Menu mnemonicParsing="false" text=" 打开 ">
             <items>
               <MenuItem mnemonicParsing="false" text=" 导入新数据库" />
-                  <MenuItem mnemonicParsing="false" text=" 关闭" />
+                  <MenuItem onAction="#exit" mnemonicParsing="false" text=" 关闭" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text=" 设置 ">
+          <Menu  mnemonicParsing="false" text=" 设置 ">
             <items>
-              <MenuItem mnemonicParsing="false" text=" 设置权限密码" />
+              <MenuItem onAction="#SetPass" mnemonicParsing="false" text=" 设置权限密码" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text=" 帮助 ">
