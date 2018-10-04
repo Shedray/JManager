@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <top>
 
           <MenuBar prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -24,12 +24,12 @@
           <Menu mnemonicParsing="false" text=" 打开 ">
             <items>
               <MenuItem mnemonicParsing="false" text=" 导入新数据库" />
-                  <MenuItem onAction="#exit" mnemonicParsing="false" text=" 关闭" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text=" 关闭" />
             </items>
           </Menu>
-          <Menu  mnemonicParsing="false" text=" 设置 ">
+          <Menu mnemonicParsing="false" text=" 设置 ">
             <items>
-              <MenuItem onAction="#SetPass" mnemonicParsing="false" text=" 设置权限密码" />
+              <MenuItem mnemonicParsing="false" onAction="#SetPass" text=" 设置权限密码" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text=" 帮助 ">
@@ -57,7 +57,13 @@
                   <TableColumn minWidth="30.0" prefWidth="30.0" text="ID" />
                   <TableColumn minWidth="50.0" prefWidth="50.0" text="名字" />
                   <TableColumn editable="false" minWidth="150.0" prefWidth="150.0" text="身份证号" />
-                  <TableColumn minWidth="150.0" prefWidth="150.0" text="户口号" />
+                  <TableColumn minWidth="30.0" prefWidth="30.0" text="性别" />
+                  <TableColumn minWidth="30.0" prefWidth="30.0" text="民族" />
+                  <TableColumn minWidth="100.0" prefWidth="100.0" text="生日" />
+                  <TableColumn minWidth="100.0" prefWidth="100.0" text="所在村" />
+                  <TableColumn minWidth="150.0" prefWidth="150.0" text="户号" />
+                  <TableColumn minWidth="100.0" prefWidth="100.0" text="户口关系" />
+
               </columns>
             </TableView>
          </center>
@@ -66,11 +72,16 @@
    <bottom>
       <AnchorPane prefHeight="106.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="465.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#DisplayAllPeople" prefHeight="45.0" prefWidth="84.0" text="显示全部" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="51.0">
+            <Button layoutX="465.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#DisplayPeople" prefHeight="45.0" prefWidth="84.0" text="显示全部" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="51.0">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
-            <Button layoutX="357.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NewPeople" prefHeight="45.0" prefWidth="84.0" text="新增村民" AnchorPane.rightAnchor="159.0">
+            <Button fx:id="AddPeople" layoutX="357.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddPeople" prefHeight="45.0" prefWidth="84.0" text="新增数据" AnchorPane.rightAnchor="159.0">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="247.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#DeletePeople" prefHeight="45.0" prefWidth="84.0" text="删除数据" AnchorPane.rightAnchor="269.0">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>

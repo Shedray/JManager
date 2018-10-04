@@ -38,7 +38,7 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
-    public int deletePersonById(Long id) throws SQLException {
+    public int deletePersonById(int id) throws SQLException {
         String sql = "DELETE FROM " + table + " WHERE id=?";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
         int i = qr.update(sql, new Object[]{id});

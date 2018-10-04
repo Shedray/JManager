@@ -1,8 +1,5 @@
 package ViewUtil;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.control.TableCell;
 import pojo.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 public class Tableview{
+//    TableCell ProgressBarTableCell
     private ObservableList<TableColumn> observableList;
     private TableView ID;
     private ObservableList<Person> People = FXCollections.observableArrayList();
@@ -19,11 +17,15 @@ public class Tableview{
         observableList=this.ID.getColumns();
         for (int i = 0; i < observableList.size(); i++) {
             observableList.get(i).setCellValueFactory(new PropertyValueFactory(Columns[i]));
+           // observableList.get(i).setCellFactory(new TaskCellFactory());
         }
+
+
         ID.setItems(People);
     }
 
     public void setPeople(List<Person> people) {
+        People.clear();
         People.addAll(people);
     }
     public void UpdatePeople(Person people) {

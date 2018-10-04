@@ -1,4 +1,4 @@
-package view;
+package Controllers;
 import dao.PersonDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,13 +15,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controller2 implements Initializable {
+public class PassController implements Initializable {
     //注册控件;
     @FXML PasswordField Password1;
     @FXML PasswordField Password2;
     @FXML PasswordField Password3;
 //    @FXML
     @FXML public void initialize(URL url, ResourceBundle rb) {
+
     }
     @FXML public void clear(ActionEvent event){
         Password1.clear();
@@ -34,10 +35,10 @@ public class Controller2 implements Initializable {
         String pass1= Password1.getText();
         String pass2= Password2.getText();
         String pass3= Password3.getText();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Warning Dialog");
-        alert.setHeaderText("Look, a Warning Dialog");
-        alert.setContentText("Careful with the next step!");
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("密码验证");
+        alert.setHeaderText("旧密码错误！");
+        alert.setContentText("点击继续");
         alert.showAndWait();
         System.out.println(pass1+pass2+pass3);
     }

@@ -1,4 +1,5 @@
-package view;
+package Controllers;
+import ViewUtil.NewPeople;
 import ViewUtil.Tableview;
 import dao.PersonDao;
 import javafx.beans.value.ChangeListener;
@@ -10,31 +11,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pojo.Person;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class MainController implements Initializable {
     /*注册当前页面的各种元素*/
+    private String ID = new String();
     @FXML private TableView Info;
     @FXML private TextField SearchText;
-
     @FXML private ChoiceBox SearchChoi;
     Tableview show = new Tableview();
     PersonDao personinfo = new PersonDao();
+    String SelectID = new String();
     /*
     * @param 对TableView进行初始化操作 并对每一行添加点击事件 目的是为了创建新的Win 提供更新删减接口
     * */
+
     public void TableViewInit(){
 
         try{
-            String columname[]={"ID","Name","PersonID","GroupID"};
+            String columname[]={"ID","Name","PersonID","Sexy","Nation","Birthday","groups","GroupID","HomeGroup"};
             show.setID(Info);
             show.setColumns(columname);
             show.setPeople(personinfo.findPerson());
@@ -42,21 +43,21 @@ public class Controller implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         Info.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Person>() {
-                    int i=0;
                     public void changed(
                             ObservableValue<? extends Person> observableValue,
                             Person oldItem, Person newItem) {
-                            i++;
-                            System.out.println("i="+i);
-                            try{
+                            SelectID = newItem.getID() ;
+                        System.out.println(observableValue.getValue());
+                                Info.setOnMouseClicked((MouseEvent t)->{
+                                    if (t.getClickCount() == 2) {
+                                        NewPeople AddPeple = new NewPeople(newItem);
+                                    }
+                                });
 
-                            }catch (Exception e){
-                                System.out.println(e);
-                            }
                     }
-
                 }
         );
     }
@@ -69,7 +70,7 @@ public class Controller implements Initializable {
     @FXML public void SetPass(ActionEvent event){
         try {
             Stage show = new Stage();
-            Parent newwin = FXMLLoader.load(getClass().getResource("Info.fxml"));
+            Parent newwin = FXMLLoader.load(getClass().getResource("../view/Pass.fxml"));
             show.setTitle("设置权限密码");
             show.setScene(new Scene(newwin, 294, 183));
             show.show();
@@ -90,26 +91,28 @@ public class Controller implements Initializable {
                 return;
                 show.UpdatePeople(personinfo.findPersonByAnway(ChoicText,GetText));
             }catch (Exception e){
-            System.out.println("hhh");
                 System.out.println(e);
             }
     }
-    @FXML public void DisplayAllPeople(ActionEvent event){
+    @FXML public void DisplayPeople(ActionEvent event){
         try{
             show.setPeople(personinfo.findPerson());
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @FXML public void NewPeople(ActionEvent event){
-        try{
-            Stage show = new Stage();
-            Parent newwin = FXMLLoader.load(getClass().getResource("new.fxml"));
-            show.setTitle("新增村民数据");
-            show.setScene(new Scene(newwin, 600, 600));
-            show.show();
+    @FXML public void AddPeople(ActionEvent event){
+        NewPeople AddPeple = new NewPeople(new Person());
+
+    }
+    @FXML public void DeletePeople(ActionEvent event){
+        System.out.println(this.SelectID);
+        int Id = Integer.parseInt(this.SelectID);
+        try {
+            personinfo.deletePersonById(Id);
+            show.setPeople(personinfo.findPerson());
         }catch (Exception e){
-            e.printStackTrace();
+
         }
     }
     @FXML public void exit(ActionEvent event){
