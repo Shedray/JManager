@@ -1,35 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddController">
    <children>
-      <TextField fx:id="Add_Name" layoutX="130.0" layoutY="35.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="83.0" layoutY="46.0" prefHeight="15.0" prefWidth="28.0" text="姓名" />
-      <Label layoutX="300.0" layoutY="39.0" prefHeight="15.0" prefWidth="28.0" text="性别" />
-      <ChoiceBox fx:id="Add_Sex" layoutX="342.0" layoutY="35.0" prefHeight="23.0" prefWidth="48.0" />
-      <Label layoutX="66.0" layoutY="78.0" text="身份证号" />
-      <TextField layoutX="131.0" layoutY="74.0" prefHeight="23.0" prefWidth="143.0" />
-      <TextField layoutX="483.0" layoutY="35.0" prefHeight="23.0" prefWidth="83.0" />
-      <Label layoutX="434.0" layoutY="39.0" prefHeight="15.0" prefWidth="38.0" text="民族：" />
-      <TextField layoutX="130.0" layoutY="109.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="66.0" layoutY="113.0" prefHeight="15.0" prefWidth="48.0" text="户口号：" />
-      <TextField layoutX="381.0" layoutY="74.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="314.0" layoutY="78.0" prefHeight="15.0" prefWidth="48.0" text="出生年月" />
-      <TextField layoutX="381.0" layoutY="109.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="314.0" layoutY="113.0" prefHeight="15.0" prefWidth="48.0" text="户口身份" />
-      <TextField layoutX="130.0" layoutY="143.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="78.0" layoutY="147.0" prefHeight="15.0" prefWidth="38.0" text="父亲：" />
-      <TextField layoutX="381.0" layoutY="143.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="328.0" layoutY="147.0" prefHeight="15.0" prefWidth="38.0" text="母亲：" />
-      <TextField layoutX="130.0" layoutY="180.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="78.0" layoutY="184.0" prefHeight="15.0" prefWidth="38.0" text="子女：" />
-      <Label layoutX="69.0" layoutY="220.0" prefHeight="15.0" prefWidth="48.0" text="政治面貌" />
-      <ChoiceBox fx:id="Add_Political" layoutX="131.0" layoutY="216.0" prefHeight="23.0" prefWidth="143.0" />
-      <TextField layoutX="382.0" layoutY="216.0" prefHeight="23.0" prefWidth="143.0" />
-      <Label layoutX="313.0" layoutY="220.0" prefHeight="15.0" prefWidth="48.0" text="入党时间" />
-      <Button fx:id="Add_People" onAction="#InsertPeople" layoutX="497.0" layoutY="535.0" mnemonicParsing="false" text="插入" />
+      <TextField fx:id="Add_Name" layoutX="138.0" layoutY="19.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="84.0" layoutY="23.0" prefHeight="15.0" prefWidth="38.0" text="姓名:" />
+      <Label layoutX="294.0" layoutY="23.0" prefHeight="15.0" prefWidth="28.0" text="性别" />
+      <ChoiceBox fx:id="Add_Sex" layoutX="334.0" layoutY="19.0" prefHeight="23.0" prefWidth="48.0" />
+      <Label layoutX="67.0" layoutY="56.0" text="身份证号" />
+      <TextField fx:id="Add_personID" layoutX="139.0" layoutY="52.0" prefHeight="23.0" prefWidth="143.0" />
+      <TextField fx:id="Add_Nation" layoutX="448.0" layoutY="19.0" prefHeight="23.0" prefWidth="83.0" />
+      <Label layoutX="401.0" layoutY="22.0" prefHeight="15.0" prefWidth="38.0" text="民族：" />
+      <TextField fx:id="Add_GroupID" layoutX="138.0" layoutY="87.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="74.0" layoutY="91.0" prefHeight="15.0" prefWidth="48.0" text="户口号：" />
+      <TextField fx:id="Add_Birthday" layoutX="389.0" layoutY="52.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="322.0" layoutY="56.0" prefHeight="15.0" prefWidth="48.0" text="出生年月" />
+      <TextField fx:id="Add_HomeGroup" layoutX="389.0" layoutY="87.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="322.0" layoutY="91.0" prefHeight="15.0" prefWidth="48.0" text="户口身份" />
+      <Label layoutX="67.0" layoutY="126.0" prefHeight="15.0" prefWidth="48.0" text="政治面貌" />
+      <ChoiceBox fx:id="Add_Political" layoutX="139.0" layoutY="122.0" prefHeight="23.0" prefWidth="143.0" />
+      <TextField fx:id="Add_PartyTime" layoutX="390.0" layoutY="122.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="321.0" layoutY="126.0" prefHeight="15.0" prefWidth="48.0" text="入党时间" />
+      <Button fx:id="Add_People" layoutX="368.0" layoutY="586.0" mnemonicParsing="false" onAction="#InsertPeople" prefHeight="46.0" prefWidth="98.0" text="更新数据" AnchorPane.rightAnchor="180.0">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TextField fx:id="Add_TypesOfPoorHouseholds" layoutX="138.0" layoutY="159.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="67.0" layoutY="163.0" prefHeight="15.0" prefWidth="48.0" text="低保类型" />
+      <Label layoutX="67.0" layoutY="199.0" prefHeight="15.0" prefWidth="48.0" text="是否常驻" />
+      <ChoiceBox fx:id="Add_Perman" layoutX="138.0" layoutY="195.0" prefHeight="23.0" prefWidth="48.0" />
+      <TextField fx:id="Add_Works" layoutX="390.0" layoutY="159.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="321.0" layoutY="163.0" prefHeight="15.0" prefWidth="48.0" text="工作类型" />
+      <TextField fx:id="Add_NumberOfPlanted" layoutX="390.0" layoutY="195.0" prefHeight="23.0" prefWidth="143.0" />
+      <Label layoutX="321.0" layoutY="199.0" prefHeight="15.0" prefWidth="48.0" text="农耕面积" />
+      <Label layoutX="67.0" layoutY="271.0" prefHeight="15.0" prefWidth="48.0" text="享受政策" />
+      <Label layoutX="67.0" layoutY="354.0" prefHeight="15.0" prefWidth="48.0" text="财产情况" />
+      <TextField fx:id="Add_Address" layoutX="136.0" layoutY="232.0" prefHeight="23.0" prefWidth="248.0" />
+      <Label layoutX="67.0" layoutY="236.0" prefHeight="15.0" prefWidth="48.0" text="家庭住址" />
+      <TextArea fx:id="Add_EnjoyThePolicy" layoutX="136.0" layoutY="271.0" prefHeight="67.0" prefWidth="395.0" />
+      <TextArea fx:id="Add_Assets" layoutX="136.0" layoutY="354.0" prefHeight="67.0" prefWidth="395.0" />
+      <TableView layoutX="136.0" layoutY="436.0" prefHeight="106.0" prefWidth="395.0">
+        <columns>
+          <TableColumn prefWidth="111.0" text="姓名" />
+          <TableColumn prefWidth="151.0" text="身份证号" />
+            <TableColumn prefWidth="131.0" text="关系" />
+        </columns>
+      </TableView>
+      <Label layoutX="67.0" layoutY="443.0" prefHeight="15.0" prefWidth="48.0" text="社会关系" />
+      <TextField fx:id="Add_Name1" layoutX="169.0" layoutY="544.0" prefHeight="23.0" prefWidth="83.0" />
+      <Label layoutX="136.0" layoutY="548.0" prefHeight="15.0" prefWidth="38.0" text="姓名:" />
+      <Label layoutX="263.0" layoutY="548.0" prefHeight="15.0" prefWidth="38.0" text="关系" />
+      <ChoiceBox fx:id="Add_Political1" layoutX="298.0" layoutY="544.0" prefHeight="23.0" prefWidth="98.0" />
+      <Button layoutX="424.0" layoutY="544.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="48.0" text="新增" />
+      <Button layoutX="146.0" layoutY="586.0" mnemonicParsing="false" onAction="#Exit" prefHeight="46.0" prefWidth="98.0" text="取消" AnchorPane.leftAnchor="180.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="483.0" layoutY="544.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="48.0" text="查找" />
+      <TextField fx:id="Add_Group" layoutX="449.0" layoutY="232.0" prefHeight="23.0" prefWidth="83.0" />
+      <Label layoutX="399.0" layoutY="236.0" prefHeight="15.0" prefWidth="38.0" text="所在村" />
    </children>
 </AnchorPane>

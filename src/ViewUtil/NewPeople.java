@@ -1,4 +1,4 @@
-package ViewUtil;
+package viewutil;
 
 import controllers.AddController;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ public class NewPeople {
                 show.setTitle("编辑村民数据 - "+People.getName());
             else
                 show.setTitle("新增村民数据");
-            show.setScene(new Scene(newwin, 600, 600));
+            show.setScene(new Scene(newwin, 600, 650));
             show.show();
         }catch (Exception e) {
             e.printStackTrace();

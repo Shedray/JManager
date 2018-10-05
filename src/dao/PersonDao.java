@@ -18,7 +18,7 @@ public class PersonDao {
     static String table = "person1";
 
     /**
-     * 根据name查User
+     * 根据相应的Key查询相应的Person
      *
      * @param personName
      * @return
@@ -84,59 +84,37 @@ public class PersonDao {
      */
     public int insertUser(Person person) throws SQLException {
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        String sql = "insert into " + table + "(personId,GroupID,Name,Sexy,Birthday,Nation,HomeGroup,groups,Political,PartyTime,TypesOfPoorHouseholds,IsItPermanent,Works,NumberOfPlanted," +
+        String sql = "insert into " + table + "(personId,GroupID,Name,Sexy,Birthday,Nation,HomeGroup,`groups`,Political,PartyTime,TypesOfPoorHouseholds,IsItPermanent,Works,NumberOfPlanted," +
                 "EnjoyThePolicy,Assets,Resume,SocialRelations,Address) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int i = qr.update(sql, new Object[]{person.getPersonID(), person.getGroupID(), person.getName(), person.getSexy(),
                 person.getBirthday(), person.getNation(), person.getHomeGroup(), person.getGroups(),
                 person.getPolitical(), person.getPartyTime(), person.getTypesOfPoorHouseholds(), person.getIsItPermanent(),
                 person.getWorks(), person.getNumberOfPlanted(), person.getEnjoyThePolicy(), person.getAssets(),
                 person.getResume(), person.getSocialRelations(), person.getAddress()});
-        System.out.println(i);
+        return i;
+
+    }
+    /**
+     * 更新村民
+     *
+     * @param person
+     * @return
+     * @throws SQLException
+     */
+    public int updatetUser(Person person) throws SQLException {
+        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
+        String sql = "update into " + table + "(id,personId,GroupID,Name,Sexy,Birthday,Nation,HomeGroup,`groups`,Political,PartyTime,TypesOfPoorHouseholds,IsItPermanent,Works,NumberOfPlanted," +
+                "EnjoyThePolicy,Assets,Resume,SocialRelations,Address) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        int i = qr.update(sql, new Object[]{person.getID(),person.getPersonID(), person.getGroupID(), person.getName(), person.getSexy(),
+                person.getBirthday(), person.getNation(), person.getHomeGroup(), person.getGroups(),
+                person.getPolitical(), person.getPartyTime(), person.getTypesOfPoorHouseholds(), person.getIsItPermanent(),
+                person.getWorks(), person.getNumberOfPlanted(), person.getEnjoyThePolicy(), person.getAssets(),
+                person.getResume(), person.getSocialRelations(), person.getAddress()});
+
         return i;
 
     }
 
-    /**
-     * 根据身份证查询村民
-     * @param personId
-     * @return
-     * @throws SQLException
-     */
-    public Person findPersonByPersonId(String personId) throws SQLException {
-        String sql = "select * from " + table + " where personId=?";
-        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{personId});
-    }
-
-    /**
-     * 根据id查村民
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public Person findPersonById(String id) throws SQLException {
-        String sql = "select * from " + table + " where id=?";
-        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{id});
-    }
-    /**
-     *
-     */
-    public List<Person> findPersonByTJ(Person person) throws SQLException {
-        StringBuffer sql = new StringBuffer("select * from  " + table + " where 1=1");
-        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        List<Object> list = new ArrayList<>();
-        if (person.getName()!=null&&!person.getName().trim().isEmpty()){
-            sql.append(" and name=?");
-            list.add(person.getName());
-        }
-        if (person.getPersonID()!=null&&!person.getPersonID().trim().isEmpty()){
-            sql.append(" and personid=?");
-            list.add(person.getPersonID());
-        }
-
-        return (List<Person>) qr.query(sql.toString(), new BeanListHandler(Person.class), list.toArray());
-    }
 
 
 }

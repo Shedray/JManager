@@ -1,4 +1,4 @@
-package ViewUtil;
+package viewutil;
 import javafx.scene.control.TableCell;
 import pojo.Person;
 import javafx.collections.FXCollections;
@@ -17,7 +17,6 @@ public class Tableview{
         observableList=this.ID.getColumns();
         for (int i = 0; i < observableList.size(); i++) {
             observableList.get(i).setCellValueFactory(new PropertyValueFactory(Columns[i]));
-           // observableList.get(i).setCellFactory(new TaskCellFactory());
         }
 
 

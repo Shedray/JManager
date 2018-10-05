@@ -1,6 +1,6 @@
-package Controllers;
-import ViewUtil.NewPeople;
-import ViewUtil.Tableview;
+package controllers;
+import viewutil.NewPeople;
+import viewutil.Tableview;
 import dao.PersonDao;
 import dao.RelationDao;
 import javafx.beans.value.ChangeListener;
@@ -58,12 +58,10 @@ public class MainController implements Initializable {
                                     if (t.getClickCount()==1)
                                         SelectID = newItem.getID();
                                     if (t.getClickCount() == 2) {
-
                                         NewPeople AddPeple = new NewPeople(newItem);
                                     }
                                 });
                                 //SelectID = null;
-
                     }
                 }
         );
@@ -113,8 +111,8 @@ public class MainController implements Initializable {
     }
     @FXML public void DisplayPeople(ActionEvent event){
         try{
-            showRelation(event);
-          //  show.setPeople(personinfo.findPerson());
+//            showRelation(event);
+            show.setPeople(personinfo.findPerson());
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,16 +134,16 @@ public class MainController implements Initializable {
         Stage now =(Stage) Info.getScene().getWindow();
         now.close();
     }
-     public void showRelation(ActionEvent event){
-         RelationControler.SelectID=this.SelectID;
-        try {
-            Stage show = new Stage();
-            Parent newwin = FXMLLoader.load(getClass().getResource("../view/relation.fxml"));
-            show.setTitle("查看亲属关系");
-            show.setScene(new Scene(newwin, 600, 300));
-            show.show();
-        }catch (Exception e){
-
-        }
-     }
+//     public void showRelation(ActionEvent event){
+//         RelationControler.SelectID=this.SelectID;
+//        try {
+//            Stage show = new Stage();
+//            Parent newwin = FXMLLoader.load(getClass().getResource("../view/relation.fxml"));
+//            show.setTitle("查看亲属关系");
+//            show.setScene(new Scene(newwin, 600, 300));
+//            show.show();
+//        }catch (Exception e){
+//
+//        }
+     //}
 }
