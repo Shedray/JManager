@@ -1,6 +1,6 @@
 package ViewUtil;
 
-import Controllers.AddController;
+import controllers.AddController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -24,10 +24,15 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
-    public Person findPersonByAnway(String Key,String personName) throws SQLException {
+    public Person findPersonByAnway(String Key,String personName)  {
         String sql = "select * from " + table + " where " +Key+"= ?";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{personName});
+        try {
+            return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{personName});
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -38,11 +43,17 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
-    public int deletePersonById(int id) throws SQLException {
+    public int deletePersonById(String id){
         String sql = "DELETE FROM " + table + " WHERE id=?";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        int i = qr.update(sql, new Object[]{id});
-        return i;
+        try{
+            int i = qr.update(sql, new Object[]{id});
+            return i;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /**
@@ -51,11 +62,17 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
-    public List<Person> findPerson() throws SQLException {
+    public List<Person> findPerson() {
         String sql = "SELECT * FROM " + table + "";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        List<Person> list = (List<Person>) qr.query(sql, new BeanListHandler(Person.class));
-        return list;
+        try{
+            List<Person> list = (List<Person>) qr.query(sql, new BeanListHandler(Person.class));
+            return list;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**

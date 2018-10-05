@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import ViewUtil.NewPeople;
 import ViewUtil.Tableview;
 import dao.PersonDao;
@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pojo.Person;
+import viewutil.Dialog;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,13 +50,16 @@ public class MainController implements Initializable {
                     public void changed(
                             ObservableValue<? extends Person> observableValue,
                             Person oldItem, Person newItem) {
-                            SelectID = newItem.getID() ;
-                        System.out.println(observableValue.getValue());
+                                ;
                                 Info.setOnMouseClicked((MouseEvent t)->{
+                                    if (t.getClickCount()==1)
+                                        SelectID = newItem.getID();
                                     if (t.getClickCount() == 2) {
+
                                         NewPeople AddPeple = new NewPeople(newItem);
                                     }
                                 });
+                                //SelectID = null;
 
                     }
                 }
@@ -89,6 +93,16 @@ public class MainController implements Initializable {
             if(GetText == null || GetText.length() <= 0)
                 //弹出Dialog
                 return;
+            if(personinfo.findPersonByAnway(ChoicText,GetText)==null)
+                //dialog
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("查询错误");
+                alert.setHeaderText("数据库中无此信息！");
+                alert.setContentText("点击继续");
+                alert.showAndWait();
+            }
+            else
                 show.UpdatePeople(personinfo.findPersonByAnway(ChoicText,GetText));
             }catch (Exception e){
                 System.out.println(e);
@@ -105,15 +119,14 @@ public class MainController implements Initializable {
         NewPeople AddPeple = new NewPeople(new Person());
 
     }
-    @FXML public void DeletePeople(ActionEvent event){
-        System.out.println(this.SelectID);
-        int Id = Integer.parseInt(this.SelectID);
-        try {
-            personinfo.deletePersonById(Id);
-            show.setPeople(personinfo.findPerson());
-        }catch (Exception e){
-
-        }
+    @FXML public Alert DeletePeople(ActionEvent event){
+        if(this.SelectID == null)
+            return new Dialog().ErrDialog("删除错误","未选中有效删除项","点击继续");
+        if(personinfo.findPersonByAnway("Id",this.SelectID)==null)
+            return new Dialog().ErrDialog("删除错误","未选中有效删除项","点击继续");
+        personinfo.deletePersonById(this.SelectID);
+        show.setPeople(personinfo.findPerson());
+        return  new Dialog().InfoDialog("删除成功","成功删除数据","点击继续");
     }
     @FXML public void exit(ActionEvent event){
         Stage now =(Stage) Info.getScene().getWindow();
