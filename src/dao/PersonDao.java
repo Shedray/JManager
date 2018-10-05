@@ -24,8 +24,13 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
+<<<<<<< HEAD
     public Person findPersonByPersonName(String personName) throws SQLException {
-        String sql = "select * from " + table + " where Name=?";
+        String sql = "select * from " + table + " where Name= ?";
+=======
+    public Person findPersonByAnway(String Key,String personName) throws SQLException {
+        String sql = "select * from " + table + " where " +Key+"= ?";
+>>>>>>> e890eff97a9df7c56b2f298cca1e456e2f9ca9bf
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
         return (Person) qr.query(sql, new BeanHandler(Person.class), new Object[]{personName});
     }
@@ -38,7 +43,7 @@ public class PersonDao {
      * @return
      * @throws SQLException
      */
-    public int deletePersonById(Long id) throws SQLException {
+    public int deletePersonById(int id) throws SQLException {
         String sql = "DELETE FROM " + table + " WHERE id=?";
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
         int i = qr.update(sql, new Object[]{id});

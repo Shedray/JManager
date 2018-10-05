@@ -64,5 +64,6 @@ public class UserDao {
         int i = qr.update(sql, new Object[]{user.getUsername().trim(), user.getPassword().trim(), user.getPhone().trim(), user.getEmail().trim()});
         System.out.println(i);
         return i;
+        /**/
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="Controllers.PassController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <PasswordField fx:id="Password1" layoutX="95.0" layoutY="30.0" prefWidth="161.0" />
+      <PasswordField fx:id="Password2" layoutX="95.0" layoutY="64.0" />
+      <Label layoutX="45.0" layoutY="34.0" prefHeight="15.0" prefWidth="43.0" text="旧密码" />
+      <Label layoutX="45.0" layoutY="68.0" prefHeight="15.0" prefWidth="43.0" text="新密码" />
+      <Button onAction="#confirm" layoutX="181.0" layoutY="146.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="63.0" text="确认" AnchorPane.rightAnchor="60.0" />
+      <PasswordField fx:id="Password3" layoutX="95.0" layoutY="96.0" />
+      <Label layoutX="25.0" layoutY="100.0" prefHeight="15.0" prefWidth="63.0" text="确认新密码" />
+      <Button onAction="#clear" layoutX="50.0" layoutY="146.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="63.0" text="取消" AnchorPane.leftAnchor="60.0" />
+   </children>
+</AnchorPane>
