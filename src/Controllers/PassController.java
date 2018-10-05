@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 import dao.PersonDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
