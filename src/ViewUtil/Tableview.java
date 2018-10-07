@@ -8,7 +8,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 public class Tableview{
-//    TableCell ProgressBarTableCell
     private ObservableList<TableColumn> observableList;
     private TableView ID;
     private ObservableList<Person> People = FXCollections.observableArrayList();
@@ -21,6 +20,7 @@ public class Tableview{
 
 
         ID.setItems(People);
+
     }
 
     public void setPeople(List<Person> people) {

@@ -72,43 +72,16 @@ public class MainController implements Initializable {
         Tooltip a = new Tooltip("选择查询方式");
         SearchChoi.setTooltip(a);
     }
-    @FXML public void SetPass(ActionEvent event){
-        try {
-            Stage show = new Stage();
-            Parent newwin = FXMLLoader.load(getClass().getResource("../view/Pass.fxml"));
-            show.setTitle("设置权限密码");
-            show.setScene(new Scene(newwin, 294, 183));
-            show.show();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+
     @FXML public void initialize(URL url, ResourceBundle rb) {
         TableViewInit();
         SearchChoiInit();
     }
-    @FXML public void SearchByName(ActionEvent event){
-        String GetText = SearchText.getText();
-        String ChoicText = SearchChoi.getValue().toString();
-        try {
-            if(GetText == null || GetText.length() <= 0)
-                //弹出Dialog
-                return;
-            if(personinfo.findPersonByAnway(ChoicText,GetText)==null)
-                //dialog
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("查询错误");
-                alert.setHeaderText("数据库中无此信息！");
-                alert.setContentText("点击继续");
-                alert.showAndWait();
-            }
-            else
-                show.UpdatePeople(personinfo.findPersonByAnway(ChoicText,GetText));
-            }catch (Exception e){
-                System.out.println(e);
-            }
-    }
+
+    /*
+    * @按键事件
+    *
+    * */
     @FXML public void DisplayPeople(ActionEvent event){
         try{
 //            showRelation(event);
@@ -130,20 +103,44 @@ public class MainController implements Initializable {
         show.setPeople(personinfo.findPerson());
         return  new Dialog().InfoDialog("删除成功","成功删除数据","点击继续");
     }
+    @FXML public void SearchByName(ActionEvent event){
+        String GetText = SearchText.getText();
+        String ChoicText = SearchChoi.getValue().toString();
+        try {
+            if(GetText == null || GetText.length() <= 0)
+                //弹出Dialog
+                return;
+            if(personinfo.findPersonByAnway(ChoicText,GetText)==null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("查询错误");
+                alert.setHeaderText("数据库中无此信息！");
+                alert.setContentText("点击继续");
+                alert.showAndWait();
+            }
+            else
+                show.UpdatePeople(personinfo.findPersonByAnway(ChoicText,GetText));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    /*
+     * @页面退出事件
+     *
+     * */
     @FXML public void exit(ActionEvent event){
         Stage now =(Stage) Info.getScene().getWindow();
         now.close();
     }
-//     public void showRelation(ActionEvent event){
-//         RelationControler.SelectID=this.SelectID;
-//        try {
-//            Stage show = new Stage();
-//            Parent newwin = FXMLLoader.load(getClass().getResource("../view/relation.fxml"));
-//            show.setTitle("查看亲属关系");
-//            show.setScene(new Scene(newwin, 600, 300));
-//            show.show();
-//        }catch (Exception e){
-//
-//        }
-     //}
+    @FXML public void SetPass(ActionEvent event){
+        try {
+            Stage show = new Stage();
+            Parent newwin = FXMLLoader.load(getClass().getResource("../view/Pass.fxml"));
+            show.setTitle("设置权限密码");
+            show.setScene(new Scene(newwin, 294, 183));
+            show.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

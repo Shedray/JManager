@@ -103,14 +103,13 @@ public class PersonDao {
      */
     public int updatetUser(Person person) throws SQLException {
         QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        String sql = "update into " + table + "(id,personId,GroupID,Name,Sexy,Birthday,Nation,HomeGroup,`groups`,Political,PartyTime,TypesOfPoorHouseholds,IsItPermanent,Works,NumberOfPlanted," +
+        String sql = "replace into " + table + "(id,personId,GroupID,Name,Sexy,Birthday,Nation,HomeGroup,`groups`,Political,PartyTime,TypesOfPoorHouseholds,IsItPermanent,Works,NumberOfPlanted," +
                 "EnjoyThePolicy,Assets,Resume,SocialRelations,Address) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int i = qr.update(sql, new Object[]{person.getID(),person.getPersonID(), person.getGroupID(), person.getName(), person.getSexy(),
                 person.getBirthday(), person.getNation(), person.getHomeGroup(), person.getGroups(),
                 person.getPolitical(), person.getPartyTime(), person.getTypesOfPoorHouseholds(), person.getIsItPermanent(),
                 person.getWorks(), person.getNumberOfPlanted(), person.getEnjoyThePolicy(), person.getAssets(),
                 person.getResume(), person.getSocialRelations(), person.getAddress()});
-
         return i;
 
     }

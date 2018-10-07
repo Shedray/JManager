@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pojo.Person;
+import viewutil.Tableview;
 
 import java.net.URL;
 import java.util.List;
@@ -36,6 +37,7 @@ public class AddController implements Initializable {
     @FXML private TextArea Add_EnjoyThePolicy;
     @FXML private TextArea Add_Assets;
     @FXML private Button Add_People;
+    @FXML private TableView Add_Relation;
     @FXML public void initialize(URL url, ResourceBundle rb) {
         ChoiceBoxInit();
         TextFieldInit();
@@ -54,12 +56,18 @@ public class AddController implements Initializable {
         Add_Sex.setValue(People.getSexy());
         if(People.getSexy()==null)
             Add_Sex.setValue("未知");
+        else
+            Add_Sex.setValue(People.getSexy());
         if(People.getPolitical()==null)
             Add_Political.setValue("其他");
+        else
+            Add_Political.setValue(People.getPolitical());
         if(People.getIsItPermanent()==null)
             Add_Perman.setValue("其他");
+        else
+            Add_Perman.setValue(People.getIsItPermanent());
     }
-    private void TextFieldInit(){
+    @FXML private void TextFieldInit(){
         Add_Name.setText(People.getName());
         Add_Nation.setText(People.getNation());
         Add_personID.setText(People.getPersonID());
@@ -75,7 +83,10 @@ public class AddController implements Initializable {
         Add_Assets.setText(People.getAddress());
         Add_Group.setText(People.getGroups());
     }
-    public  void InsertPeople(ActionEvent event){
+    @FXML private void TableviewInit(){
+
+    }
+    @FXML public  void InsertPeople(ActionEvent event){
         People.setName(Add_Name.getText());
         People.setNation(Add_Nation.getText());
         People.setPersonID(Add_personID.getText());
@@ -104,7 +115,7 @@ public class AddController implements Initializable {
             e.printStackTrace();
         }
     }
-    public  void Exit(ActionEvent event){
+    @FXML public  void Exit(ActionEvent event){
         System.out.println("sss");
         Stage Now =(Stage) Add_PartyTime.getScene().getWindow();
         Now.close();

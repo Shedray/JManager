@@ -43,7 +43,7 @@
       <Label layoutX="67.0" layoutY="236.0" prefHeight="15.0" prefWidth="48.0" text="家庭住址" />
       <TextArea fx:id="Add_EnjoyThePolicy" layoutX="136.0" layoutY="271.0" prefHeight="67.0" prefWidth="395.0" />
       <TextArea fx:id="Add_Assets" layoutX="136.0" layoutY="354.0" prefHeight="67.0" prefWidth="395.0" />
-      <TableView layoutX="136.0" layoutY="436.0" prefHeight="106.0" prefWidth="395.0">
+      <TableView fx:id="Add_Relation" layoutX="136.0" layoutY="436.0" prefHeight="106.0" prefWidth="395.0">
         <columns>
           <TableColumn prefWidth="111.0" text="姓名" />
           <TableColumn prefWidth="151.0" text="身份证号" />
