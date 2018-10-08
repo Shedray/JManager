@@ -42,7 +42,7 @@ public class MainController implements Initializable {
             String columname[]={"ID","Name","PersonID","Sexy","Nation","Birthday","groups","GroupID","HomeGroup"};
             show.setID(Info);
             show.setColumns(columname);
-            show.setPeople(personinfo.findPerson());
+            show.setData(personinfo.findPerson());
             show.show();
         }catch (Exception e){
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class MainController implements Initializable {
     @FXML public void DisplayPeople(ActionEvent event){
         try{
 //            showRelation(event);
-            show.setPeople(personinfo.findPerson());
+            show.setData(personinfo.findPerson());
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ public class MainController implements Initializable {
         if(personinfo.findPersonByAnway("Id",this.SelectID)==null)
             return new Dialog().ErrDialog("删除错误","未选中有效删除项","点击继续");
         personinfo.deletePersonById(this.SelectID);
-        show.setPeople(personinfo.findPerson());
+        show.setData(personinfo.findPerson());
         return  new Dialog().InfoDialog("删除成功","成功删除数据","点击继续");
     }
     @FXML public void SearchByName(ActionEvent event){
@@ -119,7 +119,7 @@ public class MainController implements Initializable {
                 alert.showAndWait();
             }
             else
-                show.UpdatePeople(personinfo.findPersonByAnway(ChoicText,GetText));
+                show.UpdateData(personinfo.findPersonByAnway(ChoicText,GetText));
         }catch (Exception e){
             System.out.println(e);
         }

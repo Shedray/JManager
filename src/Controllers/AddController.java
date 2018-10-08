@@ -1,15 +1,18 @@
 package controllers;
 import dao.PersonDao;
+import dao.RelationDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pojo.Person;
+import pojo.Relation;
 import viewutil.Tableview;
 
 import java.net.URL;
@@ -37,7 +40,12 @@ public class AddController implements Initializable {
     @FXML private TextArea Add_EnjoyThePolicy;
     @FXML private TextArea Add_Assets;
     @FXML private Button Add_People;
+    /*
+    * Relation框注册
+    * */
     @FXML private TableView Add_Relation;
+    @FXML private TextField Rela_Name;
+    @FXML private ChoiceBox Rela_Rela;
     @FXML public void initialize(URL url, ResourceBundle rb) {
         ChoiceBoxInit();
         TextFieldInit();
@@ -46,6 +54,23 @@ public class AddController implements Initializable {
         else
             Add_People.setText("更新村民数据");
     }
+    /*
+     *@这部分是Raletion——TableView的部分在这里初始化绑定显示的亲属数据
+     *@亲属数据的ID可以通过全局People.getID()得到
+     */
+    @FXML private void TableviewInit(List<Relation> Data){
+        Tableview rele = new Tableview();
+        String[] Columns={"relation_name","relation_persionId","relation_description"};
+        rele.setColumns(Columns);
+        rele.setID(Add_Relation);
+        try {
+            rele.setData(Data);
+        }catch (Exception e){
+            System.out.print(e);
+        }
+        rele.show();
+
+    }
     @FXML private void ChoiceBoxInit(){
         Add_Sex.setItems(FXCollections.observableArrayList(
                 "男", "女","未知"));
@@ -53,6 +78,8 @@ public class AddController implements Initializable {
                 "群众", "团员","预备党员","党员","其他"));
         Add_Perman.setItems(FXCollections.observableArrayList(
                 "否","是","其他"));
+        Rela_Rela.setItems(FXCollections.observableArrayList(
+                "父亲","母亲","妻子"));
         Add_Sex.setValue(People.getSexy());
         if(People.getSexy()==null)
             Add_Sex.setValue("未知");
@@ -83,8 +110,14 @@ public class AddController implements Initializable {
         Add_Assets.setText(People.getAddress());
         Add_Group.setText(People.getGroups());
     }
-    @FXML private void TableviewInit(){
 
+    @FXML private void Rela_Add(ActionEvent event){
+        Rela_Rela.getValue();
+        Rela_Name.getText();
+        //新加关系
+    }
+    @FXML private void Rela_Search(ActionEvent event){
+        //查找关系
     }
     @FXML public  void InsertPeople(ActionEvent event){
         People.setName(Add_Name.getText());

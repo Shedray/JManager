@@ -7,10 +7,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
-public class Tableview{
+public class Tableview<T>{
     private ObservableList<TableColumn> observableList;
     private TableView ID;
-    private ObservableList<Person> People = FXCollections.observableArrayList();
+    private ObservableList<Object> People = FXCollections.observableArrayList();
     private String[] Columns;
     public void show(){
         observableList=this.ID.getColumns();
@@ -23,13 +23,13 @@ public class Tableview{
 
     }
 
-    public void setPeople(List<Person> people) {
+    public void setData(List<T> Data) {
         People.clear();
-        People.addAll(people);
+        People.addAll(Data);
     }
-    public void UpdatePeople(Person people) {
+    public void UpdateData(T Data) {
         People.clear();
-        People.add(people);
+        People.add(Data);
     }
     public void setColumns(String[] columns) {
         Columns = columns;
