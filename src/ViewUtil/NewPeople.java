@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 import pojo.Person;
 
 public class NewPeople {
-    public NewPeople(Person People){
+    public NewPeople(Person People,String click){
         try{
             AddController test = new AddController();
             test.setPeople(People);
+            AddController.CLICK=click;
             Stage show = new Stage();
             Parent newwin = FXMLLoader.load(getClass().getResource("../view/Add.fxml"));
             if(People.getName()!=null)

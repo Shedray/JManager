@@ -58,7 +58,7 @@ public class MainController implements Initializable {
                                     if (t.getClickCount()==1)
                                         SelectID = newItem.getID();
                                     if (t.getClickCount() == 2) {
-                                        NewPeople AddPeple = new NewPeople(newItem);
+                                        NewPeople AddPeple = new NewPeople(newItem,SelectID);
                                     }
                                 });
                                 //SelectID = null;
@@ -91,7 +91,7 @@ public class MainController implements Initializable {
         }
     }
     @FXML public void AddPeople(ActionEvent event){
-        NewPeople AddPeple = new NewPeople(new Person());
+        NewPeople AddPeple = new NewPeople(new Person(),SelectID);
 
     }
     @FXML public Alert DeletePeople(ActionEvent event){

@@ -46,26 +46,26 @@ public class RelationServiceImpl implements RelationService {
 
     @Override
     public List<Relation> getKids(Integer id) throws SQLException{
-        return null;
+        return dao.getKids(id);
     }
 
     @Override
     public List<Relation> getGrandkids(Integer id) throws SQLException{
-        return null;
+        return dao.getGrandkids(id);
     }
 
     @Override
     public List<Relation> getGrands(Integer id) throws SQLException{
-        return null;
+        return dao.getGrands(id);
     }
 
     @Override
     public List<Relation> getOutGrands(Integer id) throws SQLException{
-        return null;
+        return dao.getOutGrands(id);
     }
 
     @Override
     public List<Relation> getBrotherAndSisters(Integer id) throws SQLException{
-        return null;
+        return dao.getBrotherAndSisters(id);
     }
 }
