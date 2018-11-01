@@ -112,11 +112,13 @@ public class AddController implements Initializable {
     }
 
     @FXML private void Rela_Add(ActionEvent event){
-        Rela_Rela.getValue();
-        Rela_Name.getText();
+
+        System.out.print(Rela_Rela.getValue()+" ");
+        System.out.println(Rela_Name.getText());
         //新加关系
     }
     @FXML private void Rela_Search(ActionEvent event){
+        System.out.println("查找关系");
         //查找关系
     }
     @FXML public  void InsertPeople(ActionEvent event){

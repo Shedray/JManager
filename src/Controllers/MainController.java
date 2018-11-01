@@ -53,7 +53,7 @@ public class MainController implements Initializable {
                     public void changed(
                             ObservableValue<? extends Person> observableValue,
                             Person oldItem, Person newItem) {
-                                ;
+
                                 Info.setOnMouseClicked((MouseEvent t)->{
                                     if (t.getClickCount()==1)
                                         SelectID = newItem.getID();
@@ -120,6 +120,7 @@ public class MainController implements Initializable {
             }
             else
                 show.UpdateData(personinfo.findPersonByAnway(ChoicText,GetText));
+            SearchText.clear();
         }catch (Exception e){
             System.out.println(e);
         }
