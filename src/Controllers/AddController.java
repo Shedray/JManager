@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pojo.Person;
 import pojo.Relation;
+import service.RelationService;
+import service.serviceImpl.RelationServiceImpl;
 import viewutil.Tableview;
 
 import java.net.URL;
@@ -22,6 +24,8 @@ import java.util.ResourceBundle;
 public class AddController implements Initializable {
     //注册控件;
     private static Person People = new Person();
+    public static String CLICK="";
+
     @FXML private ChoiceBox Add_Sex;
     @FXML private ChoiceBox Add_Political;
     @FXML private ChoiceBox Add_Perman;
@@ -49,6 +53,7 @@ public class AddController implements Initializable {
     @FXML public void initialize(URL url, ResourceBundle rb) {
         ChoiceBoxInit();
         TextFieldInit();
+        TableviewInit();
         if(People.getID()==null)
             Add_People.setText("新增村民数据");
         else
@@ -58,17 +63,25 @@ public class AddController implements Initializable {
      *@这部分是Raletion——TableView的部分在这里初始化绑定显示的亲属数据
      *@亲属数据的ID可以通过全局People.getID()得到
      */
-    @FXML private void TableviewInit(List<Relation> Data){
+    @FXML private void TableviewInit(){
+
+        RelationService relationService=new RelationServiceImpl();
+        try {
+        List<Relation> relations=relationService.getDefaultParentsAndMarried(Integer.parseInt(CLICK));
+            for (Relation r:relations
+                 ) {
+                System.out.println(r);
+            }
         Tableview rele = new Tableview();
         String[] Columns={"relation_name","relation_persionId","relation_description"};
         rele.setColumns(Columns);
         rele.setID(Add_Relation);
-        try {
-            rele.setData(Data);
+        rele.setData(relations);
+        rele.show();
         }catch (Exception e){
             System.out.print(e);
         }
-        rele.show();
+
 
     }
     @FXML private void ChoiceBoxInit(){

@@ -1,5 +1,6 @@
 package dao;
 
+import Util.Tables;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import pojo.Relation;
@@ -17,8 +18,21 @@ public class RelationDao {
     /**
      * 表名称
      */
-    static String table="tb_relation";
-
+    static String table= Tables.tb_relation;
+    /**
+     * 插入亲属关系
+     * @param relation
+     * @return
+     * @throws SQLException
+     */
+    public int insertrRlation(Relation relation) throws SQLException {
+        String sql = "insert into "+table+"(person_id,relation_id,relationship,optime) values(?,?,?,now())";
+        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
+        int i = qr.update(sql, new Object[]{relation.getPerson_id(), relation.getRelation_id(),relation.getRelationship()});
+        System.out.println(i);
+        return i;
+        /**/
+    }
     /**
      * 根据ID删除关联关系
      * @param id
@@ -39,26 +53,36 @@ public class RelationDao {
     public List<Relation> findRelationById(Integer ID) throws SQLException {
         //String sql  = "SELECT * FROM "+table+" ";
         String sql  ="SELECT *,\n" +
-                "                (SELECT `Name` from person1 p1 where p1.id=person_id)as person_name,\n" +
-                "        (SELECT `Name` from person1 p1 where p1.id=relation_id)as relation_name,\n" +
-                "        (SELECT `personId` from person1 p1 where p1.id=relation_id)as relation_persionId from "+table+" where person_id="+ID;
+                "                (SELECT `Name` from "+Tables.tb_persion+" p1 where p1.id=person_id)as person_name,\n" +
+                "        (SELECT `Name` from "+Tables.tb_persion+" p1 where p1.id=relation_id)as relation_name,\n" +
+                "        (SELECT `personId` from "+Tables.tb_persion+" p1 where p1.id=relation_id)as relation_persionId from "+table+" where person_id="+ID;
         QueryRunner qr=new QueryRunner(JdbcUtil.getDataSource());
         List<Relation> list = (List<Relation>) qr.query(sql, new BeanListHandler(Relation.class));
         return list;
     }
 
-    /**
-     * 插入亲属关系
-     * @param relation
-     * @return
-     * @throws SQLException
-     */
-    public int insertrRlation(Relation relation) throws SQLException {
-        String sql = "insert into "+table+"(person_id,relation_id,relationship,optime) values(?,?,?,now())";
-        QueryRunner qr = new QueryRunner(JdbcUtil.getDataSource());
-        int i = qr.update(sql, new Object[]{relation.getPerson_id(), relation.getRelation_id(),relation.getRelationship()});
-        System.out.println(i);
-        return i;
-        /**/
+    public List<Relation> getKids(Integer id) throws SQLException{
+        return null;
     }
+
+
+    public List<Relation> getGrandkids(Integer id) throws SQLException{
+        return null;
+    }
+
+
+    public List<Relation> getGrands(Integer id) throws SQLException{
+        return null;
+    }
+
+
+    public List<Relation> getOutGrands(Integer id) throws SQLException{
+        return null;
+    }
+
+
+    public List<Relation> getBrotherAndSisters(Integer id) throws SQLException{
+        return null;
+    }
+
 }
