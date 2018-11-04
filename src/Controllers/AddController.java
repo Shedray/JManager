@@ -54,16 +54,27 @@ public class AddController implements Initializable {
         ChoiceBoxInit();
         TextFieldInit();
         TableviewInit();
+        System.out.println("jjj");
         if(People.getID()==null)
-            Add_People.setText("新增村民数据");
+            Add_People.setText("新增");
         else
-            Add_People.setText("更新村民数据");
+            Add_People.setText("更新");
+    }
+    public void inti(){
+        ChoiceBoxInit();
+        TextFieldInit();
+        TableviewInit();
+        if(People.getID()==null)
+            Add_People.setText("新增");
+        else
+            Add_People.setText("更新");
     }
     /*
      *@这部分是Raletion——TableView的部分在这里初始化绑定显示的亲属数据
      *@亲属数据的ID可以通过全局People.getID()得到
      */
-    @FXML private void TableviewInit(){
+    Tableview rele = new Tableview();
+    @FXML public void TableviewInit(){
 
         RelationService relationService=new RelationServiceImpl();
         try {
@@ -72,7 +83,7 @@ public class AddController implements Initializable {
                  ) {
                 System.out.println(r);
             }
-        Tableview rele = new Tableview();
+
         String[] Columns={"relation_name","relation_persionId","relation_description"};
         rele.setColumns(Columns);
         rele.setID(Add_Relation);
@@ -84,7 +95,7 @@ public class AddController implements Initializable {
 
 
     }
-    @FXML private void ChoiceBoxInit(){
+    @FXML public void ChoiceBoxInit(){
         Add_Sex.setItems(FXCollections.observableArrayList(
                 "男", "女","未知"));
         Add_Political.setItems(FXCollections.observableArrayList(
@@ -135,6 +146,7 @@ public class AddController implements Initializable {
         //查找关系
     }
     @FXML public  void InsertPeople(ActionEvent event){
+        System.out.println("测试事件");
         People.setName(Add_Name.getText());
         People.setNation(Add_Nation.getText());
         People.setPersonID(Add_personID.getText());
@@ -168,7 +180,7 @@ public class AddController implements Initializable {
         Stage Now =(Stage) Add_PartyTime.getScene().getWindow();
         Now.close();
     }
-    public static void setPeople(Person people) {
+    public  void setPeople(Person people) {
         People = people;
     }
 }

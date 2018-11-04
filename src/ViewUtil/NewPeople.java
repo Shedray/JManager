@@ -13,14 +13,6 @@ public class NewPeople {
             AddController test = new AddController();
             test.setPeople(People);
             AddController.CLICK=click;
-            Stage show = new Stage();
-            Parent newwin = FXMLLoader.load(getClass().getResource("../view/Add.fxml"));
-            if(People.getName()!=null)
-                show.setTitle("编辑村民数据 - "+People.getName());
-            else
-                show.setTitle("新增村民数据");
-            show.setScene(new Scene(newwin, 600, 650));
-            show.show();
         }catch (Exception e) {
             e.printStackTrace();
         }
