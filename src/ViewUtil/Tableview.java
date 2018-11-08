@@ -17,10 +17,13 @@ public class Tableview<T>{
         observableList=this.ID.getColumns();
         for (int i = 0; i < observableList.size(); i++) {
             observableList.get(i).setCellValueFactory(new PropertyValueFactory(Columns[i]));
-
+        if(i<4) {
+            observableList.get(i).setCellFactory(TextFieldTableCell.forTableColumn());
+            }
         }
-        observableList.get(1).setCellFactory(TextFieldTableCell.forTableColumn());
-        observableList.get(3).setCellFactory(TextFieldTableCell.forTableColumn());
+
+//        observableList.get(1).setCellFactory(TextFieldTableCell.forTableColumn());
+//        observableList.get(3).setCellFactory(TextFieldTableCell.forTableColumn());
         ID.setEditable(true);
         ID.setItems(People);
 

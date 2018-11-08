@@ -57,12 +57,12 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button contentDisplay="TOP" layoutX="9.0" layoutY="361.0" mnemonicParsing="false" onAction="#AddPeople" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: #336699;" text=" 添加数据" textFill="#eee9e9">
+                <Button contentDisplay="TOP" layoutX="9.0" layoutY="361.0" mnemonicParsing="false" onAction="#DeletePeople" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: #336699;" text="删除数据" textFill="#eee9e9">
                     <graphic>
                         <ImageView fx:id="MainAddata" fitHeight="54.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@icon/添加.png" />
-                            </image>
+                     <image>
+                        <Image url="@icon/删除%20(2).png" />
+                     </image>
                         </ImageView>
                     </graphic>
                     <font>
@@ -129,12 +129,12 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="222.0" prefWidth="516.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="222.0" prefWidth="516.0" vvalue="1.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
                <content>
-                  <fx:include source="Add.fxml" fx:id="test"/>
+                  <fx:include fx:id="test" source="Add.fxml" />
                </content>
             </ScrollPane>
          </children>
