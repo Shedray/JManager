@@ -92,7 +92,7 @@ public class AddController implements Initializable {
         Add_Perman.setItems(FXCollections.observableArrayList(
                 "否","是","其他"));
         Rela_Rela.setItems(FXCollections.observableArrayList(
-                "父亲","母亲","妻子"));
+                "父亲","母亲","配偶"));
         Add_Sex.setValue(People.getSexy());
         if(People.getSexy()==null)
             Add_Sex.setValue("未知");
