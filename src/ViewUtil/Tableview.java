@@ -1,5 +1,6 @@
 package viewutil;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.cell.TextFieldTableCell;
 import pojo.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,13 +17,17 @@ public class Tableview<T>{
         observableList=this.ID.getColumns();
         for (int i = 0; i < observableList.size(); i++) {
             observableList.get(i).setCellValueFactory(new PropertyValueFactory(Columns[i]));
+        if(i<4) {
+            observableList.get(i).setCellFactory(TextFieldTableCell.forTableColumn());
+            }
         }
 
-
+//        observableList.get(1).setCellFactory(TextFieldTableCell.forTableColumn());
+//        observableList.get(3).setCellFactory(TextFieldTableCell.forTableColumn());
+        ID.setEditable(true);
         ID.setItems(People);
 
     }
-
     public void setData(List<T> Data) {
         People.clear();
         People.addAll(Data);

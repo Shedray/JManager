@@ -1,14 +1,9 @@
 package controllers;
 import dao.PersonDao;
-import dao.RelationDao;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pojo.Person;
@@ -23,8 +18,8 @@ import java.util.ResourceBundle;
 
 public class AddController implements Initializable {
     //注册控件;
-    private static Person People = new Person();
-    public static String CLICK="";
+    private  Person People=new Person();
+    public  String CLICK;
 
     @FXML private ChoiceBox Add_Sex;
     @FXML private ChoiceBox Add_Political;
@@ -55,36 +50,45 @@ public class AddController implements Initializable {
         TextFieldInit();
         TableviewInit();
         if(People.getID()==null)
-            Add_People.setText("新增村民数据");
+            Add_People.setText("新增");
         else
-            Add_People.setText("更新村民数据");
+            Add_People.setText("更新");
+    }
+    public void Refresh(Person people,String click){
+        this.People = people;
+        this.CLICK = click;
+        ChoiceBoxInit();
+        TextFieldInit();
+        TableviewInit();
+        if(People.getID()==null)
+            Add_People.setText("新增");
+        else
+            Add_People.setText("更新");
     }
     /*
      *@这部分是Raletion——TableView的部分在这里初始化绑定显示的亲属数据
      *@亲属数据的ID可以通过全局People.getID()得到
      */
-    @FXML private void TableviewInit(){
+    Tableview rele = new Tableview();
+    @FXML public void TableviewInit(){
 
         RelationService relationService=new RelationServiceImpl();
         try {
-        List<Relation> relations=relationService.getDefaultParentsAndMarried(Integer.parseInt(CLICK));
-            for (Relation r:relations
-                 ) {
-                System.out.println(r);
-            }
-        Tableview rele = new Tableview();
-        String[] Columns={"relation_name","relation_persionId","relation_description"};
-        rele.setColumns(Columns);
-        rele.setID(Add_Relation);
-        rele.setData(relations);
-        rele.show();
+    //            System.out.println(Integer.parseInt(CLICK));
+            List<Relation> relations=relationService.getDefaultParentsAndMarried(Integer.parseInt(CLICK));
+
+            String[] Columns={"relation_name","relation_persionId","relation_description"};
+            rele.setColumns(Columns);
+            rele.setID(Add_Relation);
+            rele.setData(relations);
+            rele.show();
         }catch (Exception e){
             System.out.print(e);
         }
 
 
     }
-    @FXML private void ChoiceBoxInit(){
+    @FXML public void ChoiceBoxInit(){
         Add_Sex.setItems(FXCollections.observableArrayList(
                 "男", "女","未知"));
         Add_Political.setItems(FXCollections.observableArrayList(
@@ -120,10 +124,9 @@ public class AddController implements Initializable {
         Add_NumberOfPlanted.setText(People.getNumberOfPlanted());
         Add_Address.setText(People.getAddress());
         Add_EnjoyThePolicy.setText(People.getEnjoyThePolicy());
-        Add_Assets.setText(People.getAddress());
+        Add_Assets.setText(People.getAssets());
         Add_Group.setText(People.getGroups());
     }
-
     @FXML private void Rela_Add(ActionEvent event){
 
         System.out.print(Rela_Rela.getValue()+" ");
@@ -154,7 +157,6 @@ public class AddController implements Initializable {
         People.setIsItPermanent(Add_Perman.getValue().toString());
 
         try {
-            //System.out.println();
             if (People.getID()==null)
                 new PersonDao().insertUser(People);
             else
@@ -164,11 +166,7 @@ public class AddController implements Initializable {
         }
     }
     @FXML public  void Exit(ActionEvent event){
-        System.out.println("sss");
         Stage Now =(Stage) Add_PartyTime.getScene().getWindow();
         Now.close();
-    }
-    public static void setPeople(Person people) {
-        People = people;
     }
 }

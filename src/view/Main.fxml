@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -56,12 +57,12 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Button>
-                <Button contentDisplay="TOP" layoutX="9.0" layoutY="361.0" mnemonicParsing="false" onAction="#AddPeople" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: #336699;" text=" 添加数据" textFill="#eee9e9">
+                <Button contentDisplay="TOP" layoutX="9.0" layoutY="361.0" mnemonicParsing="false" onAction="#DeletePeople" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: #336699;" text="删除数据" textFill="#eee9e9">
                     <graphic>
                         <ImageView fx:id="MainAddata" fitHeight="54.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@icon/添加.png" />
-                            </image>
+                     <image>
+                        <Image url="@icon/删除%20(2).png" />
+                     </image>
                         </ImageView>
                     </graphic>
                     <font>
@@ -91,31 +92,52 @@
                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </padding>
         </AnchorPane>
-        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="524.0">
-            <children>
-                <TableView fx:id="Info" layoutY="55.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="523.0" prefWidth="524.0" style="-fx-background-color: #ffffff; -fx-background-image: url(&quot;设置.png&quot;);" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
-                    <columns>
-                        <TableColumn minWidth="30.0" prefWidth="30.0" text="ID" />
-                        <TableColumn minWidth="50.0" prefWidth="50.0" text="名字" />
-                        <TableColumn editable="false" minWidth="150.0" prefWidth="150.0" text="身份证号" />
-                        <TableColumn minWidth="30.0" prefWidth="30.0" text="性别" />
-                        <TableColumn minWidth="30.0" prefWidth="30.0" text="民族" />
-                        <TableColumn minWidth="100.0" prefWidth="100.0" text="生日" />
-                        <TableColumn minWidth="100.0" prefWidth="100.0" text="所在村" />
+      <VBox prefHeight="573.0" prefWidth="516.0">
+         <children>
+            <AnchorPane prefHeight="41.0" prefWidth="516.0" style="-fx-background-color: #336699;">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" text="村民列表" textFill="#eee9e9">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="306.0" prefWidth="516.0">
+               <children>
+                  <TableView fx:id="Info" blendMode="SRC_ATOP" cache="true" cacheHint="SCALE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="234.0" prefWidth="516.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn minWidth="30.0" prefWidth="30.0" resizable="false" text="ID" />
+                        <TableColumn minWidth="50.0" prefWidth="50.0" resizable="false" text="名字" />
+                        <TableColumn editable="false" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" text="性别" />
+                        <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="身份证号" />
+                        <TableColumn minWidth="30.0" prefWidth="30.0" resizable="false" text="民族" />
+                        <TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="生日" />
+                        <TableColumn minWidth="100.0" prefWidth="100.0" resizable="false" text="所在村" />
                         <TableColumn minWidth="150.0" prefWidth="150.0" text="户号" />
                         <TableColumn minWidth="100.0" prefWidth="100.0" text="户口关系" />
-                    </columns>
-                </TableView>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="48.0" prefWidth="514.0" style="-fx-background-color: #006699;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                    <children>
-                        <Label layoutX="14.0" layoutY="8.0" text="村民列表" textFill="#eee9e9">
-                            <font>
-                                <Font name="System Italic" size="24.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-            </children>
-        </AnchorPane>
+                     </columns>
+                     <effect>
+                        <DropShadow color="#180e96" height="12.1" radius="7.775" />
+                     </effect>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="222.0" prefWidth="516.0" vvalue="1.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <content>
+                  <fx:include fx:id="test" source="Add.fxml" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
     </items>
 </SplitPane>

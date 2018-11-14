@@ -1,15 +1,12 @@
 package controllers;
-import viewutil.NewPeople;
 import viewutil.Tableview;
 import dao.PersonDao;
-import dao.RelationDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,15 +17,15 @@ import viewutil.Dialog;
 
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController extends AddController{
     /*注册当前页面的各种元素*/
     private String ID = new String();
     @FXML private TableView Info;
     @FXML private TextField SearchText;
     @FXML private ChoiceBox SearchChoi;
+    @FXML private AddController testController;
     Tableview show = new Tableview();
     PersonDao personinfo = new PersonDao();
     String SelectID = new String();
@@ -39,7 +36,7 @@ public class MainController implements Initializable {
     public void TableViewInit(){
 
         try{
-            String columname[]={"ID","Name","PersonID","Sexy","Nation","Birthday","groups","GroupID","HomeGroup"};
+            String columname[]={"ID","Name","Sexy","PersonID","Nation","Birthday","groups","GroupID","HomeGroup"};
             show.setID(Info);
             show.setColumns(columname);
             show.setData(personinfo.findPerson());
@@ -53,22 +50,20 @@ public class MainController implements Initializable {
                     public void changed(
                             ObservableValue<? extends Person> observableValue,
                             Person oldItem, Person newItem) {
-
                                 Info.setOnMouseClicked((MouseEvent t)->{
                                     if (t.getClickCount()==1)
                                         SelectID = newItem.getID();
                                     if (t.getClickCount() == 2) {
-                                        NewPeople AddPeple = new NewPeople(newItem,SelectID);
+                                        testController.Refresh(newItem,SelectID);
                                     }
                                 });
-                                //SelectID = null;
                     }
                 }
         );
     }
     public void SearchChoiInit(){
         SearchChoi.setItems(FXCollections.observableArrayList(
-                "id", "Name"));
+                "身份证号", "姓名"));
         Tooltip a = new Tooltip("选择查询方式");
         SearchChoi.setTooltip(a);
     }
@@ -84,6 +79,7 @@ public class MainController implements Initializable {
     * */
     @FXML public void DisplayPeople(ActionEvent event){
         try{
+
 //            showRelation(event);
             show.setData(personinfo.findPerson());
         }catch (Exception e) {
@@ -91,8 +87,7 @@ public class MainController implements Initializable {
         }
     }
     @FXML public void AddPeople(ActionEvent event){
-        NewPeople AddPeple = new NewPeople(new Person(),SelectID);
-
+        testController.Refresh(new Person(),SelectID);
     }
     @FXML public Alert DeletePeople(ActionEvent event){
         if(this.SelectID == null)
@@ -105,7 +100,11 @@ public class MainController implements Initializable {
     }
     @FXML public void SearchByName(ActionEvent event){
         String GetText = SearchText.getText();
-        String ChoicText = SearchChoi.getValue().toString();
+        String ChoicText=null;
+        if(SearchChoi.getValue().toString().equals("姓名"))
+            ChoicText = "Name";
+        else if(SearchChoi.getValue().toString().equals("身份证号"))
+            ChoicText = "PersonID";
         try {
             if(GetText == null || GetText.length() <= 0)
                 //弹出Dialog
@@ -138,7 +137,8 @@ public class MainController implements Initializable {
             Stage show = new Stage();
             Parent newwin = FXMLLoader.load(getClass().getResource("../view/Pass.fxml"));
             show.setTitle("设置权限密码");
-            show.setScene(new Scene(newwin, 294, 183));
+            show.setScene(new Scene(newwin, 338, 245));
+            show.setResizable(false);
             show.show();
         }catch (Exception e){
             e.printStackTrace();
