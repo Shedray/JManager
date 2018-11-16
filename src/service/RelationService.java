@@ -13,8 +13,21 @@ public interface RelationService {
     /**
      * 增加亲属关系
      * @param res 亲属列表
+     * Relation 需要的属性
+     *           person_id
+     *            relation_id
+     *            relationship
      * */
     public List<Integer> insertRelations(List<Relation> res) throws SQLException;
+    /**
+     * 增加亲属关系
+     * @param res 亲属列表
+     * Relation 需要的属性
+     *           person_id
+     *            relation_id
+     *            relationship
+     * */
+    public Integer insertRelation(Relation res) throws SQLException;
     /**
      * 删除亲属关系
      * @param id 亲属关系id
@@ -61,5 +74,18 @@ public interface RelationService {
      * @return  List<Relation>
      * */
     public List<Relation> getBrotherAndSisters(Integer id)throws SQLException;
+    /**
+     * 查询指定人之间是否有亲属关系
+     * @param personId 要查询人的persionid
+     * @param relationid 要查询人的亲属persionid
+     * @return  List<Relation>
+     * */
+    public Integer getRelationExist(Integer personId,Integer relationid)throws SQLException;
+    /**
+     * 查询
+     * @param re 要查询人的信息
+     * @return  List<Relation>
+     * */
+    public List<Relation> findRelation(Relation re)throws SQLException;
 
 }

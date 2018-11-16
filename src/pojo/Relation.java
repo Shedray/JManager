@@ -56,6 +56,9 @@ public class Relation {
             case RealtionshipEmue.mother:
                 this.setRelation_description("母亲");
                 break;
+            case RealtionshipEmue.married:
+                this.setRelation_description("配偶");
+                break;
         }
 
     }

@@ -68,4 +68,17 @@ public class RelationServiceImpl implements RelationService {
     public List<Relation> getBrotherAndSisters(Integer id) throws SQLException{
         return dao.getBrotherAndSisters(id);
     }
+
+    @Override
+    public Integer getRelationExist(Integer personId, Integer relationid) throws SQLException {
+        return dao.getRelationExist(personId,relationid);
+    }
+    @Override
+    public List<Relation> findRelation(Relation re)throws SQLException{
+        return dao.findRelation(re);
+    }
+    @Override
+    public Integer insertRelation(Relation res) throws SQLException{
+        return dao.insertrRlation(res);
+    }
 }
