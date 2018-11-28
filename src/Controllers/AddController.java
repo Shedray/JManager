@@ -1,4 +1,5 @@
 package controllers;
+import Util.Log;
 import Util.RealtionshipEmue;
 import dao.PersonDao;
 import javafx.collections.FXCollections;
@@ -51,6 +52,7 @@ public class AddController implements Initializable {
     @FXML private ChoiceBox Rela_Rela;
 
     RelationService relationService=new RelationServiceImpl();
+    viewutil.Dialog dialog=new Dialog();
     @FXML public void initialize(URL url, ResourceBundle rb) {
         ChoiceBoxInit();
         TextFieldInit();
@@ -82,6 +84,7 @@ public class AddController implements Initializable {
         try {
     //            System.out.println(Integer.parseInt(CLICK));
             List<Relation> relations=relationService.getDefaultParentsAndMarried(Integer.parseInt(CLICK));
+
 
             String[] Columns={"relation_name","relation_persionId","relation_description"};
             rele.setColumns(Columns);
@@ -137,7 +140,7 @@ public class AddController implements Initializable {
     *添加村民关系
     查询村民是否存在，存在再查询添加关系是否已经存在，再查询关系是否正确，不存在则添加关系*/
     @FXML private void Rela_Add(ActionEvent event){
-        viewutil.Dialog dialog=new Dialog();
+
         if(CLICK==null||CLICK.equals("")){
             dialog.ErrDialog("","提示","请先选择村民");
             return;
@@ -189,9 +192,9 @@ public class AddController implements Initializable {
                 dialog.ErrDialog("", "提示", "查询出错");
                 return;
             }
-            if(!(relation_id==RealtionshipEmue.married)) {
+           if(!(relation_id==RealtionshipEmue.married)) {
                 //查询被添加的人是否已经是父亲或者母亲
-                Relation re2 = new Relation();
+               /* Relation re2 = new Relation();
                 re2.setRelation_id(Integer.parseInt(p.getID()));
                 try {
                     List<Relation> lis = relationService.findRelation(re2);
@@ -206,7 +209,7 @@ public class AddController implements Initializable {
                     E.printStackTrace();
                     dialog.ErrDialog("", "提示", "查询出错");
                     return;
-                }
+                }*/
             }else {
                 //检查被添加的人是否已经结婚
                 Relation re=new Relation();
@@ -235,26 +238,37 @@ public class AddController implements Initializable {
 
             }
 
-            try{
-                Relation ree=new Relation();
-                ree.setPerson_id(Integer.parseInt(CLICK));
-                ree.setRelation_id(Integer.parseInt(p.getID()));
-                ree.setRelationship(relation_id);
-                relationService.insertRelation(ree);
-                if (relation_id==RealtionshipEmue.married) {//配偶双方的关系都会添加
-                    Relation exchange = new Relation();
-                    exchange.setPerson_id(Integer.parseInt(p.getID()));
-                    exchange.setRelation_id(Integer.parseInt(CLICK));
-                    exchange.setRelationship(relation_id);
-                    relationService.insertRelation(exchange);
-                }
-                dialog.ErrDialog("","提示","添加成功");
-                TableviewInit();
-            }catch (Exception e){
-                dialog.ErrDialog("","提示","查询出错");
-                e.printStackTrace();
-            }
+            addmarriedRelation(relation_id,Integer.parseInt(p.getID()),Integer.parseInt(CLICK));
+            if(!(relation_id==RealtionshipEmue.married)){
+                Relation check=new Relation();
+                check.setPerson_id(Integer.parseInt(CLICK));
+                if (relation_id==RealtionshipEmue.mother)
+                    check.setRelationship(RealtionshipEmue.father);
+                else
+                    check.setRelationship(RealtionshipEmue.mother);
+                try{
+                    List<Relation> defrelations=relationService.findRelation(check);
+                    if(defrelations!=null&&defrelations.size()>0){
+                        //检查被添加的人是否已经结婚
+                        Relation re=new Relation();
+                        re.setRelation_id(Integer.parseInt(p.getID()));
+                        re.setRelationship(RealtionshipEmue.married);
+                        List<Relation> relations=relationService.findRelation(re);
+                        if(relations!=null&&relations.size()>0){
 
+                        }else{
+                            addmarriedRelation(RealtionshipEmue.married,Integer.parseInt(p.getID()),defrelations.get(0).getRelation_id());
+                        }
+
+                    }
+                }catch (Exception e){
+                    dialog.ErrDialog("","提示","查询出错");
+                   e.printStackTrace();
+                    return;
+                }
+            }
+            dialog.ErrDialog("","提示","添加成功");
+            TableviewInit();
         }else{
             dialog.ErrDialog("","提示","村民不存在，请检查输入的用户名");
         }
@@ -262,7 +276,11 @@ public class AddController implements Initializable {
     }
     @FXML private void Rela_Search(ActionEvent event){
         System.out.println("查找关系");
-        //查找关系
+        try{
+            relationService.getMoreRelationship(Integer.parseInt(CLICK));
+        }catch (SQLException e){
+            Log.d("sql error","查询出错");
+        }
     }
     @FXML public  void InsertPeople(ActionEvent event){
         People.setName(Add_Name.getText());
@@ -295,5 +313,25 @@ public class AddController implements Initializable {
     @FXML public  void Exit(ActionEvent event){
         Stage Now =(Stage) Add_PartyTime.getScene().getWindow();
         Now.close();
+    }
+    public  void addmarriedRelation(Integer relation_id,Integer p,Integer or){
+        try{
+            Relation ree=new Relation();
+            ree.setPerson_id(or);
+            ree.setRelation_id(p);
+            ree.setRelationship(relation_id);
+            relationService.insertRelation(ree);
+            if (relation_id==RealtionshipEmue.married) {//配偶双方的关系都会添加
+                Relation exchange = new Relation();
+                exchange.setPerson_id(p);
+                exchange.setRelation_id(or);
+                exchange.setRelationship(relation_id);
+                relationService.insertRelation(exchange);
+            }
+
+        }catch (Exception e){
+            dialog.ErrDialog("","提示","查询出错");
+            e.printStackTrace();
+        }
     }
 }

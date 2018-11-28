@@ -56,9 +56,9 @@ public class RelationDao {
     public List<Relation> findRelationById(Integer ID) throws SQLException {
         //String sql  = "SELECT * FROM "+table+" ";
         String sql  ="SELECT *,\n" +
-                "                (SELECT `Name` from "+Tables.tb_persion+" p1 where p1.id=person_id)as person_name,\n" +
-                "        (SELECT `Name` from "+Tables.tb_persion+" p1 where p1.id=relation_id)as relation_name,\n" +
-                "        (SELECT `personId` from "+Tables.tb_persion+" p1 where p1.id=relation_id)as relation_persionId from "+table+" where person_id="+ID;
+                "                (SELECT `Name` from "+Tables.tb_persion_test+" p1 where p1.id=person_id)as person_name,\n" +
+                "        (SELECT `Name` from "+Tables.tb_persion_test+" p1 where p1.id=relation_id)as relation_name,\n" +
+                "        (SELECT `personId` from "+Tables.tb_persion_test+" p1 where p1.id=relation_id)as relation_persionId from "+table+" where person_id="+ID;
         List<Relation> list = (List<Relation>) qr.query(sql, new BeanListHandler(Relation.class));
         return list;
     }
@@ -104,7 +104,12 @@ public class RelationDao {
      * @return  List<Relation>
      * */
     public List<Relation> findRelation(Relation re)throws SQLException{
-        String sql="SELECT *  from tb_relation WHERE ";
+        String sql="SELECT *,\n" +
+                "(SELECT `Name` from "+Tables.tb_persion_test+" p1 where p1.id=person_id)as person_name,\n" +
+                "(SELECT `Sexy` from "+Tables.tb_persion_test+" p1 where p1.id=person_id)as person_sexy,\n" +
+                "(SELECT `Birthday` from "+Tables.tb_persion_test+" p1 where p1.id=person_id)as person_birth,\n" +
+                "(SELECT `Name` from "+Tables.tb_persion_test+" p1 where p1.id=relation_id)as relation_name,\n" +
+                "(SELECT `personId` from "+Tables.tb_persion_test+" p1 where p1.id=relation_id)as relation_persionId  from tb_relation WHERE ";
         if(re.getId()!=null){
             sql+=" id="+re.getId()+" and";
         }
@@ -117,7 +122,7 @@ public class RelationDao {
         if(re.getRelationship()!=null){
             sql+=" relationship="+re.getRelationship()+" and";
         }
-        Log.d("sql",sql);
+
         sql=sql.substring(0,sql.lastIndexOf("and"));
         Log.d("sql",sql);
         List<Relation> list = (List<Relation>) qr.query(sql, new BeanListHandler(Relation.class));

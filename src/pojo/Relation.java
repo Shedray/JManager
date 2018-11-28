@@ -2,6 +2,7 @@ package pojo;
 
 import Util.RealtionshipEmue;
 
+import java.util.Calendar;
 import java.util.Date;
 /**
  * 亲属关系数据库实体类
@@ -16,6 +17,11 @@ public class Relation {
     private Date optime;
     private String person_name;//当前查询村民姓名
     private String relation_name;//当前亲属姓名
+    private String person_sexy;//当前查询村民性别
+     private int person_age;//当前查询村民年龄
+     private String person_birth;//当前查询村民年龄
+
+
     private String relation_description;//两人亲属关系
     private String relation_persionId;//亲属身份证号
 
@@ -103,6 +109,35 @@ public class Relation {
         this.relation_persionId = relation_persionId;
     }
 
+    public String getPerson_sexy() {
+        return person_sexy;
+    }
+
+    public void setPerson_sexy(String person_sexy) {
+        this.person_sexy = person_sexy;
+    }
+
+    public int getPerson_age() {
+        return person_age;
+    }
+
+    public void setPerson_age(int person_age) {
+        this.person_age = person_age;
+    }
+
+    public String getPerson_birth() {
+        return person_birth;
+    }
+
+    public void setPerson_birth(String person_birth) {
+        if(person_birth==null||person_birth.length()<4)
+            return;
+        this.person_birth = person_birth;
+        int year=Integer.parseInt(person_birth.substring(0,4));
+        int age=Calendar.getInstance().get(Calendar.YEAR)-year;
+        this.setPerson_age(age);
+    }
+
     @Override
     public String toString() {
         return "Relation{" +
@@ -113,8 +148,24 @@ public class Relation {
                 ", optime=" + optime +
                 ", person_name='" + person_name + '\'' +
                 ", relation_name='" + relation_name + '\'' +
+                ", person_sexy='" + person_sexy + '\'' +
+                ", person_age=" + person_age +
+                ", person_birth='" + person_birth + '\'' +
                 ", relation_description='" + relation_description + '\'' +
                 ", relation_persionId='" + relation_persionId + '\'' +
                 '}';
+    }
+
+    public void clear(){
+        this.id=null;
+        this.person_id=null;
+        this.relation_id=null;
+        this.relationship=null;
+        this.optime=null;
+        this.person_name=null;
+        this.relation_name=null;
+        this.relation_description=null;
+        this.relation_persionId=null;
+
     }
 }

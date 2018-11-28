@@ -45,6 +45,25 @@ public interface RelationService {
      * */
     public List<Relation> getDefaultParentsAndMarried(Integer id) throws SQLException;
     /**
+     * 获取外祖父母亲属关系
+     * @param id 要查询人的id
+     * @return  List<Relation>
+     * */
+    public List<Relation> getOutGrandparents(Integer id)throws SQLException;
+    /**
+     * 获取详细亲属关系
+     * @param id 要查询人的id
+     * @return  List<Relation>
+     * */
+    public List<Relation> getMoreRelationship(Integer id)throws SQLException;
+    /**
+     * 获取祖父母亲属关系
+     * @param id 要查询人的id
+     * @return  List<Relation>
+     * */
+    public List<Relation> getGrandparents(Integer id)throws SQLException;
+
+    /**
      * 获取子女亲属关系
      * @param id 要查询人的id
      * @return  List<Relation>
@@ -62,12 +81,7 @@ public interface RelationService {
      * @return  List<Relation>
      * */
     public List<Relation> getGrands(Integer id)throws SQLException;
-    /**
-     * 获取外祖父母亲属关系
-     * @param id 要查询人的id
-     * @return  List<Relation>
-     * */
-    public List<Relation> getOutGrands(Integer id)throws SQLException;
+
     /**
      * 获取兄弟姐妹亲属关系
      * @param id 要查询人的id
